@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="assets/css/formstyle.css">
+    <title>cv form</title>
+</head>
+<body>
+
+    <form id="main-form" method="POST">
+        
+    <div class="main-container">
+
+
+        <div class="form-div" id="form1" style="display: flex; flex-wrap: nowrap; flex-direction: column; justify-content: space-around;">
+            <div>
+                <p class="cv-header">პირადი ინფო</p>
+                <a href="index.html"><div class="backBtnIndex"></div></a>
+                <p class="page-nmb" >1/3</p>
+                <hr class="hr">
+            </div>
+
+
+
+            <!-- div form 1 -->
+            <div class="cv-div">
+                <div  style="display: flex; flex-direction: row;">
+                    <div style="margin: 10px;">
+                        <label class="label-input" for="fname">სახელი</label>
+                        <input name="name" onkeydown="reviewForm()" onkeyup="reviewForm()" class="text-input" id="fname" type="text">
+                        <span class="span">მინიმუმ 2 ასო, ქართული ასოები</span>
+                    </div>
+
+                    <div style="margin: 10px;">
+                        <label class="label-input" for="lname">გვარი</label>
+                        <input name="surname" onkeydown="reviewForm()" onkeyup="reviewForm()" class="text-input" id="lname" type="text">
+                        <span class="span">მინიმუმ 2 ასო, ქართული ასოები</span>                    
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: row; margin: 10px; margin-top: 40px;">
+                    <input onchange="getImagePreview(event)" type="file" id="upload-file" accept="image/*">
+                    <label class="label-input" for="label-file">პირადი ფოტოს ატვირთვა</label>
+                    <label id="label-file" for="upload-file">ატვირთვა</label>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                    <label class="label-input" for="textarea">ჩემს შესახებ(არასავალდებულო)</label>
+                    <textarea onkeydown="reviewForm()" onkeyup="reviewForm()" name="about_me" class="textarea" id="textarea" placeholder="ზოგადი ინფო შენ შესახებ"></textarea>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                    <label class="label-input" for="email">ელ.ფოსტა</label>
+                    <input name="email" onkeydown="reviewForm()" onkeyup="reviewForm()" class="long-input" type="text" id="email" placeholder="anzorr666@redberry.ge">
+                    <span class="span" >უნდა მთავრდებოდეს @redberry.ge-ით</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                    <label class="label-input" for="phone-number">მობილურის ნომერი</label>
+                    <input name="phone_number" maxlength="13" onkeydown="reviewForm()" onkeyup="reviewForm()" class="long-input" type="text" id="phone-number" placeholder="+995 551 12 34 56">
+                    <span class="span" style="width: 500px;">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</span>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end;margin: 10px; margin-top: 150px;">
+                    <button class="nextBtn" id="form1-btn"> შემდეგი </button>   
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- div form 2 -->
+        <div class="form-div" id="form2">
+            <p class="cv-header">გამოცდილება</p>
+            <a href="index.html"><div class="backBtnIndex"></div></a>
+            <p class="page-nmb" >2/3</p>
+            <hr class="hr">
+
+            <div class="cv-div" id="form2" style="display: flex; flex-wrap: nowrap; flex-direction: column; ">
+
+                <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 20px;">
+                    <label class="label-input" for="tanamdeboba">თანამდებობა</label>
+                    <input onkeydown="reviewForm()" onkeyup="reviewForm()" class="long-input" id="tanamdeboba" class="long-input" type="text" placeholder="დეველოპერი, დიზაინერი, ა.შ">
+                    <span class="span">მინიმუმ 2 სიმბოლო</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                    <label class="label-input" for="damsakmebeli">დამსაქმებელი</label>
+                    <input onkeydown="reviewForm()" onkeyup="reviewForm()" class="long-input" type="text" id="damsakmebeli" placeholder="დამსაქმებელი">
+                    <span class="span">მინიმუმ 2 სიმბოლო</span>
+                </div>
+
+                <div style="display: flex;">
+                    <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                        <label class="label-input" for="start-date">დაწყების რიცხვი</label>
+                        <input onchange="showDate()" style="margin-right: 35px;" class="date-input" type="date" id="start-date">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                        <label class="label-input" for="end-date">დამთავრების რიცხვი</label>
+                        <input onchange="showDate()" class="date-input" type="date" name="" id="end-date">
+                    </div>
+                </div>
+                    <div style="display: flex; flex-direction: column; margin: 10px; margin-top: 40px;">
+                        <label for="description">აღწერა</label>
+                        <textarea onkeydown="reviewForm()" onkeyup="reviewForm()" class="textarea" id="description"></textarea>
+                    </div>
+
+                <div style="display: flex; justify-content: space-between; margin: 10px; margin-top: 189px;">
+                    <div>
+                        <button class="nextBtn" id="form2back-btn"> უკან </button>   
+                    </div>
+    
+                    <div >
+                        <button class="nextBtn" id="form2-btn"> შემდეგი </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- div form 3 -->
+        <div class="form-div" id="form3">
+            <p class="cv-header">განათლება</p>
+            <a href="index.html"><div class="backBtnIndex"></div></a>
+            <p class="page-nmb" >3/3</p>
+            <hr class="hr">
+
+            <div class="cv-div" id="form2" style="display: flex; flex-wrap: nowrap; flex-direction: column; ">
+                <div style="margin: 10px; margin-top: 30px; ">
+                    <label class="label-input" for="saswavlebeli">სასწავლებელი</label>
+                    <input onkeydown="reviewForm()" onkeyup="reviewForm()" class="long-input" type="text" id="saswavlebeli">
+                    <span class="span" >მინიმუმ 2 სიმბოლო</span>
+                </div>
+
+                <div style="display: flex;align-items: center; margin: 10px; margin-top: 30px;">
+                    <div style="margin: 10px; margin-right: 32px;">
+                        <label class="label-input" for="xarisxi">ხარისხი</label>
+                        <select onchange="showDate()" id="xarisxi">
+                            <option hidden value="">აირჩიეთ ხარისხი</option>
+                        </select>
+                        </select>
+                    </div>
+                    <div style="margin: 10px; margin-top: 30px;">
+                        <label class="label-input" for="uni-end-date">დამთავრების რიცხვი</label>
+                        <input onchange="showDate()" class="date-input" type="date" id="uni-end-date">
+                    </div>
+                </div>
+
+                <div style="margin: 10px; margin-top: 30px;">
+                    <label class="label-input" for="textarea-agwera">აღწერა</label>
+                    <textarea onkeydown="reviewForm()" onkeyup="reviewForm()" id="textarea-agwera" cols="" rows=""></textarea>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin: 10px; margin-top: 189px;">
+                    <div>
+                        <button class="nextBtn" id="form3back-btn"> უკან </button>   
+                    </div>
+                    <div>
+                        <button type="submit"  class="nextBtn" id="post-btn"> დასრულება </button>
+                    </div>
+                </div>
+                
+            </form>
+            </div>
+        </div>
+
+
+        <!-- demo cv -->
+        <div id="cv-demo">
+            <p id="fname-header"></p>
+            <p id="lname-header"></p>
+            <p id="textarea-label">ჩემ შესახებ</p>
+            <p id="textarea-header"></p>
+            <p id="email-header"></p>
+            <p id="phone-header"></p>
+
+            <div id="star-logo"></div>
+            <div id="preview" ></div>
+            
+            <hr id="cv-hr1" >
+
+            <p id="gamocdileba-header" >გამოცდილება</p>
+            <div id="tanamdeboba-div">
+                <p id="tanamdeboba-header"></p>
+                <p id="damsakmebeli-header"></p>
+            </div>
+
+            <div id="start-date-header-div" >
+                <p id="start-date-header"></p>
+                <p id="end-date-hader"></p>
+            </div>
+
+            <p id="description-header"></p>
+
+            <hr id="cv-hr2" >
+            <p id="ganatleba-header">განათლება</p>
+
+            <div class="saswavlebeli-div">
+                <p id="saswavlebeli-header" ></p>
+                <p id="xarisxi-header" ></p>
+            </div>
+  
+            <p id="unienddate-header" ></p>
+            <p id="textarea-agwera-header" ></p>
+
+        </div>
+                
+        <!-- posted cv -->
+        <div id="cv-form">
+
+        </div>
+    </div>
+
+
+    <script src="assets/scripts/formscript.js"></script>
+</body>
+</html>
